@@ -89,3 +89,29 @@ function test(){
 }
 
 test(1, 2, 3, 4, 5);
+
+
+let a = 'cascas12314dwqdqwqw';
+
+console.log(Boolean(parseInt(a)));
+
+let arr1 = 'apple';
+
+function ucFirst(str) {
+    if (!str) {return str;}
+  
+    return str[0].toUpperCase() + str.slice(1);
+}
+
+let arr2 = ['apple', 'ball', 'keyboard'];
+
+for (let i = 0; i < arr2.length; i++){
+    arr2[i] = ucFirst(arr2[i]);
+}
+
+
+console.log(arr2);
+
+
+
+
