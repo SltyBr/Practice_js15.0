@@ -1,85 +1,33 @@
 'use strict';
 
-const dateTime = document.querySelector('.date'),
-      dateFirst = document.querySelector('.dateFirst');
+const collections = document.querySelectorAll('.collection'),
+      elems = document.querySelectorAll('.elem');
 
+const newElem = document.createElement('li'); // создаёт парный тэг html, можно указать любую комбинацию
 
-let now = new Date(),
-    year = now.getFullYear(),
-    month = now.getMonth(),
-    day = now.getDay(),
-    date = now.getDate(),
-    hour = now.getHours(),
-    minute = now.getMinutes(),
-    second = now.getSeconds(),
-    curMonth,
-    curDay;
+console.log(newElem);
 
+console.log(collections);
+console.log(elems);
 
-switch (month)
-{
-  case 0: curMonth='января'; break;
-  case 1: curMonth='февраля'; break;
-  case 2: curMonth='марта'; break;
-  case 3: curMonth='апреля'; break;
-  case 4: curMonth='мая'; break;
-  case 5: curMonth='июня'; break;
-  case 6: curMonth='июля'; break;
-  case 7: curMonth='августа'; break;
-  case 8: curMonth='сентября'; break;
-  case 9: curMonth='октября'; break;
-  case 10: curMonth='ноября'; break;
-  case 11: curMonth='декабря'; break;
-}
+//elems[3].remove(); // удаляет элемент из DOM дерева, не удаляет элемент из коллекции
+//elems[1].remove();
 
-switch (day)
-{
-    case 0: curDay= 'воскресенье'; break;
-    case 1: curDay= 'понедельник'; break;
-    case 2: curDay= 'вторник'; break;
-    case 3: curDay= 'среда'; break;
-    case 4: curDay= 'четверг'; break;
-    case 5: curDay= 'пятница'; break;
-    case 6: curDay= 'суббота'; break;
-}
+/* collections[1].append(elems[3]);  */// вставляем элемент в конец родителя DOM дерева
+/* collections[1].append(elems[1]); */ // именно берёт и перемещает элементы, не копирует
 
-let nameHour = (hour == 1) ? 'час':
-    (hour < 5) ? 'часа':
-    'часов';
+/* collections[0].before(collections[1]); */ // берет аргумент коллекции1 и вставляет перед коллецкией0
 
-function zeroFirst(day){
-    if (day < 10) {
-      day = '0' + day;
-    }
+/* elems[5].after(elems[0]);
+elems[2].before(elems[4]); */
 
-    if (month < 10) {
-        month = '0' + month;
-    }
+/* elems[2].replaceWith(elems[3]); */ // заменяет elems2 на elems3, elems2 удаляет из дом дерева
 
-    if (hour < 10) {
-      hour = '0' + hour;
-    }
+/* const elemClone = elems[3].cloneNode(true);  */// клонирует узел целиком, создаёт новый 
 
-    if (minute < 10) {
-      minute = '0' + minute;
-    }
+/* elemClone.classList.add('newElem');
+elemClone.textContent = 'new elem'; */
 
-    if (second < 10) {
-      second = '0' + second;
-    }
-}
+/* collections[1].append(elemClone); */
 
-zeroFirst();
-
-dateTime.innerHTML = 'Сегодня ' + curDay + ', ' + date + ' ' + curMonth + ' ' + year + ' года, ' +  hour + ' ' + nameHour + ' ' + minute +  ' минут ' + second + ' секунд';
-
-let newDate;
-
-let counter = 1;
-function dateRefresh(){
-  newDate = date + '.' + (+month + 1) + '.' + year + ' - ' + hour + ':' + minute + ':' + second;
-  dateFirst.innerHTML = newDate;
-}
-dateRefresh();
-
-setInterval(dateRefresh, 1000);
+elems[2].textContent = 'Привет'; // переписывает текст внутри тэга
