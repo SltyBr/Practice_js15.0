@@ -1,6 +1,8 @@
 'use strict';
 
-const dateTime = document.querySelector('.date');
+const dateTime = document.querySelector('.date'),
+      dateFirst = document.querySelector('.dateFirst');
+
 
 let now = new Date(),
     year = now.getFullYear(),
@@ -13,7 +15,6 @@ let now = new Date(),
     curMonth,
     curDay;
 
-console.log(now.getDate());
 
 switch (month)
 {
@@ -42,10 +43,43 @@ switch (day)
     case 6: curDay= 'суббота'; break;
 }
 
-dateTime.innerHTML = 'Сегодня ' + curDay + ', ' + date + ' ' + curMonth + ' ' + year + ' года, ' +  hour + ' часа ' + minute +  ' минуты ' + second + ' секунды';  
+let nameHour = (hour == 1) ? 'час':
+    (hour < 5) ? 'часа':
+    'часов';
 
-dateTime.style.color = 'red';
+function zeroFirst(day){
+    if (day < 10) {
+      day = '0' + day;
+    }
 
-if (day < 10) {
-    console.log('0' + day + ':' + month + ':' +year);
+    if (month < 10) {
+        month = '0' + month;
+    }
+
+    if (hour < 10) {
+      hour = '0' + hour;
+    }
+
+    if (minute < 10) {
+      minute = '0' + minute;
+    }
+
+    if (second < 10) {
+      second = '0' + second;
+    }
 }
+
+zeroFirst();
+
+dateTime.innerHTML = 'Сегодня ' + curDay + ', ' + date + ' ' + curMonth + ' ' + year + ' года, ' +  hour + ' ' + nameHour + ' ' + minute +  ' минут ' + second + ' секунд';
+
+let newDate;
+
+let counter = 1;
+function dateRefresh(){
+  newDate = date + '.' + (+month + 1) + '.' + year + ' - ' + hour + ':' + minute + ':' + second;
+  dateFirst.innerHTML = newDate;
+}
+dateRefresh();
+
+setInterval(dateRefresh, 1000);
