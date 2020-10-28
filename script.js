@@ -8,12 +8,17 @@ let arr = ['a', 'b', 'c', 'd', 'e', 'f'];
 
 const getNum = function (a){
     a = parseInt(Math.random()*255).toString(16);
+    
+    if (a== 0 || a < 10){
+        a += '0';
+    }
 
     for (let i = 0; i < arr.length; i++){
-        if (a == 0 || a < 10 || a == arr[i]){
+        if (a == arr[i]){
             a += '0';
         }
     }
+    console.log(a);
     return a;
 };
 
