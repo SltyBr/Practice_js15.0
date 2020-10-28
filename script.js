@@ -1,4 +1,8 @@
 'use strict';
+
+const randomColor = document.querySelector('.random-color'),
+    body = document.body,
+    getRandom = document.querySelector('.get-random');
 /* у this есть четыре правила  callstack и call site*/
 
 function one(){
@@ -52,3 +56,15 @@ foo();
 //============================
 
 // 4. привязка new
+
+randomColor.style.color = '#FFFFFF';
+body.style.backgroundColor = randomColor.textContent; 
+
+getRandom.addEventListener('click', function(){
+    let num = parseInt(Math.random()*255).toString(16)+parseInt(Math.random()*255).toString(16)+parseInt(Math.random()*255).toString(16),
+        hex = '#' + num;
+
+    body.style.backgroundColor = hex;
+    getRandom.style.color = hex;
+    randomColor.textContent = hex;
+});

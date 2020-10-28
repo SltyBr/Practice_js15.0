@@ -1,0 +1,16 @@
+.container{
+  text-align: center;
+}
+.random-color{
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+.get-random{
+  padding: 20px;
+  background: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  outline: none;
+}
