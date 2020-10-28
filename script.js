@@ -4,33 +4,37 @@ const randomColor = document.querySelector('.random-color'),
     body = document.body,
     getRandom = document.querySelector('.get-random');
 
-body.style.backgroundColor = randomColor.textContent;
+let arr = ['a', 'b', 'c', 'd', 'e', 'f'];
 
-const getRandomColor = function(){
-    let num1 = parseInt(Math.random()*255).toString(16),
-        num2 = parseInt(Math.random()*255).toString(16),
-        num3 = parseInt(Math.random()*255).toString(16);
-    
-    let num = num1 + num2 + num3;
+const getNum = function (a){
+    a = parseInt(Math.random()*255).toString(16);
 
-    if (num1 == 0){
-        num1 = 0 + '0';
+    for (let i = 0; i < arr.length; i++){
+        if (a == 0 || a < 10 || a == arr[i]){
+            a += '0';
+        }
     }
-    if (num2 == 0){
-        num2 = 0 + '0';
-    }
-    if (num3 == 0){
-        num3 = 0 + '0';
-    }
-    let hex = '#' + num;
-
-
-        body.style.backgroundColor = hex;
-        getRandom.style.color = hex;
-        randomColor.textContent = hex;
-    
-    console.log(num);
+    return a;
 };
 
-getRandom.addEventListener('click', getRandomColor);
+const getRandomColor = function(){
+    let num1,
+        num2,
+        num3;
 
+    num1 = getNum(num1);
+    num2 = getNum(num2);
+    num3 = getNum(num3);
+
+    let num = num1 + num2 + num3;
+
+    let hex = '#' + num.toUpperCase();
+
+    body.style.backgroundColor = hex;
+    getRandom.style.color = hex;
+    randomColor.textContent = hex;
+};
+
+body.style.backgroundColor = randomColor.textContent;
+
+getRandom.addEventListener('click', getRandomColor);
