@@ -6,23 +6,23 @@ const randomColor = document.querySelector('.random-color'),
 
 let arr = ['a', 'b', 'c', 'd', 'e', 'f'];
 
-const getNum = function (a){
+const getNum = function (a){ // получаем один из элементов 16го кода, добавляем в начале ноль, есть число не двузначное
     a = parseInt(Math.random()*255).toString(16);
     
     if (a== 0 || a < 10){
-        a += '0';
+        a = '0' + a;
     }
 
     for (let i = 0; i < arr.length; i++){
         if (a == arr[i]){
-            a += '0';
+            a = '0' + a;
         }
     }
-    console.log(a);
+
     return a;
 };
 
-const getRandomColor = function(){
+const getRandomColor = function(){ // функция, где конкатенируем три 16х элемента
     let num1,
         num2,
         num3;
@@ -33,11 +33,11 @@ const getRandomColor = function(){
 
     let num = num1 + num2 + num3;
 
-    let hex = '#' + num.toUpperCase();
+    let hex = '#' + num.toUpperCase(); // строка с финальным результатом
 
-    body.style.backgroundColor = hex;
-    getRandom.style.color = hex;
-    randomColor.textContent = hex;
+    body.style.backgroundColor = hex; // добавляем переменную, где это необходимо 
+    getRandom.style.color = hex; // добавляем переменную, где это необходимо
+    randomColor.textContent = hex; // добавляем переменную, где это необходимо
 };
 
 body.style.backgroundColor = randomColor.textContent;
