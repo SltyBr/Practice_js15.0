@@ -9,7 +9,7 @@ let arr = ['a', 'b', 'c', 'd', 'e', 'f'];
 const getNum = function (a){ // получаем один из элементов 16го кода, добавляем в начале ноль, есть число не двузначное
     a = parseInt(Math.random()*255).toString(16);
     
-    if (a== 0 || a < 10){
+    if (a < 10){
         a = '0' + a;
     }
 
