@@ -1,134 +1,158 @@
 'use strict';
+const hello = document.querySelectorAll('.hello');
+// rest параметр
+// ... = rest параметр
+function test(a, b, c, ...arr){ // такая конструкция получает массив из аргументов
+    console.log(a, b, c);
+    console.log(arr);
 
-const element = document.querySelectorAll('.element');
+}
 
-console.log(element);
+test('red', 5, 12, 'black', [], true, 9);
 
-element.forEach((el)=>{
-    el.addEventListener('click', (el)=>{
-        console.log(el.target);
-    });
-});
+// spread оператор достаём аргументы функции
 
+const arr1 = ['red', 5, 12, 'apple'];
+const arr2 = ['black', 4, 6];
+
+const arr3 = [...arr1, ...arr2]; // с помощью спреда можно объединять два массива и больше
+
+function test1(a, b, c, d, e, f, g){
+
+    console.log(a, b, c, d);
+    console.log(e, f, g);
+}
+
+test1(...arr1, ...arr2); // spread оператор
+console.log(arr3);
+console.log(hello);
+
+const helloArr = [...hello];
+
+console.log(helloArr);
+
+
+// деструкторизация объекта
 
 const car = {
     brand: 'mazda',
-    model: 3,
-    year: 2006,
-    get fullTitle() {
-        return this.brand + ' ' + this.model;
-    },
-    set fullTitle(value){
-        this.brand = value;
+    options: {
+        color: 'red',
+        abs: true
     }
 };
 
-//mazda['color'] = 'blue';
-//mazda.color = 'blue';
+//const brand = car.brand; старый синтаксис
+//const model = car.model;
+//const color = car.color;
 
-Object.defineProperty(car, 'color',{
-    value: 'red',
-    writable: true, // (возможность перезаписи) если менять на ложь, мы не сможем редактировать свойство value вне объекта и *
-    configurable: true, // если менять на ложь, то не сможем удалять элемент из объекта *
-    enumerable: true // ложь делает свойство невидимым *
+const {brand, model = 6, options:{color: colorCar, abs: absCar}} = car; // деструкторизация объекта
+
+console.log(brand, model, colorCar, absCar);
+
+const car1 = {
+    brand1: 'mazda',
+};
+
+const {brand1, model1 = 6, options:{color = 'red'} = {}} = car1;
+
+console.log(brand1, model1, color);
+
+const createCar = ({brand, model, color, colorInt = 'red'}) => {
+    console.log(
+        `
+        Запущено производство автомобиля ${brand} ${model}
+        цвет кузова: ${color}
+        цвет салона: ${colorInt}
+        `
+    );
+};
+
+createCar({
+    brand: 'mazda',
+    model: 3,
+    color: 'blue',
 });
 
-//mazda.color = 'blue'; // * выдаст ошибку
 
-//delete mazda.color;
+const cars = ['mazda', 'bmw', 'mercedes-benz', 'audi'];
 
-console.log(car);
+const [a,, b, c] = cars; // такой записью пропускаем элемент с индексом 1 в массиве
 
-for (let key in car) { // * при переборе, если enumerable false, red не появится в списке
-    console.log(key, car[key]);
-}
-/* 
-Object.defineProperty(car, 'fullTitle',{ // getter что-то неоднозначное, ни функция, ни метод, а скорее свойство
-    get: function(){
-        return this.brand + ' ' + this.model;
-    },
-    set: function(val){ // в es6 можно геттер и сеттер писать сразу в объекте
-        this.brand = val;
+console.log(a);
+console.log(b);
+console.log(c);
+
+const carsModel = {
+    brand: 'Volvo',
+    models: {
+        sedan: ['s60', 's90'],
+        cross: ['v60', 'v90']
     }
-});
- */
-car.color = 'blue';
+};
 
-car.fullTitle = 'BMW';
-
-console.log(car.fullTitle);
-
-console.log(car.fullTitle);
-
-class CarWash {
-    constructor(brand, model = CarWash.noCarBaseModel(), services = []){ // метод который создаётся в момент создания класса и подготавливает объект
-        this.brand = brand;
-        this.model = model;
-        this.washed = false;
-        this._services = services;
+const {
+    models: {
+    sedan: [s1, s2], 
+        cross: [c1, c2]
     }
+} = carsModel;
 
-    static noCarBaseModel(){ // статический метод, возвращает значение по умолчанию, нельзя вызвать из объекта
-        return 'none';
+console.log(s1, s2, c1, c2);
+
+// как создавать объекты из переменных es6
+
+const car3 = 'bentley';
+const cycle = 'bmx';
+const bike = 'honda';
+
+const transport = {
+    car3, 
+    cycle, 
+    bike,
+    ride(){
+        console.log('go');
     }
+};
 
-    washReady(){
-        this.washed = true;
-        CarWash.counter++;
-        this.report();
+transport.ride();
+
+console.log(transport);
+
+// новый метод у object assign
+
+const vehicle = {
+    bike: 'honda',
+    model3: 'bentley',
+    cycle2: 'bmx'
+};
+
+const newVehicle = {
+    bike: 'suzuki',
+    quadBike: 'polaris'
+};
+
+// Object.assign(vehicle, newVehicle); // заменяет данные более актуальными, по ключу
+
+const currentVehicle = Object.assign({}, vehicle, newVehicle); // {} - печатает предыдущий объект и новый
+
+/* console.log(vehicle);
+
+console.log(currentVehicle); */
+
+// object spread оператор
+
+const ship = 'Photinia';
+
+const curTrans = {
+    ...vehicle, 
+    ...currentVehicle, 
+    ship,
+    ride(){
+        console.log('go friends');
     }
+};
 
-    report(){
-        console.log(this.brand, this.model, this.washed);
-    }
+console.log('object spread ', curTrans);
 
-    get services(){
-        console.log(this._services);
-        return this._services.length > 0 ? 'Есть доп услуги' : 'Нет доп услуг';
-    }
-
-    set services(addServices){
-        return this._services.push(addServices);
-    }
-}
-
-// наследование, такая запись позволяет passcar наследовать всё от carwash, для наследования определённых свойств используем super
-class PassCar extends CarWash{
-    constructor(brand, model, services, pass = 5){ // наследуем конструктор от родителя, можем расширять
-        super(brand, model, services);
-        this.pass = pass;
-    }
-
-    washReady(){
-        super.washReady(); // можно наследовать метод через super с указанием имени метода
-        this.reportOffice();
-    }
-
-    reportOffice(){
-        console.log('На мойке для легковых была помыта машина');
-    }
-}
-
-CarWash.counter = 0;
-
-const car1 = new CarWash('mazda', 3, ['black tires', 'wax']);
-const car2 = new PassCar('BMW', 2);
-
-
-car1.washReady();
-
-console.log('counter: ' + CarWash.counter);
-
-
-console.log('counter: ' + CarWash.counter);
-
-car1.services = 'Протирка стёкол';
-console.log(car1.services);
-console.log(car2.services);
-
-
-
-console.log('машина 1 ', car1);
-console.log('машина 2 ', car2);
-
-car2.washReady();
+curTrans.ride();
