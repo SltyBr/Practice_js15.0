@@ -19,4 +19,7 @@ const myLesson = [
     {lesson: 16, type: 'additional', points: 7},
   ];
 
-console.log(myLesson);
+
+myLesson.forEach(el => {
+    el.has('basic');
+});
