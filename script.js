@@ -156,3 +156,91 @@ const curTrans = {
 console.log('object spread ', curTrans);
 
 curTrans.ride();
+
+// Коллекции Map
+
+const map = new Map([ // можно писать значения во время объявления
+    [2015, 'autumn'],
+    ['koker', 777]
+]);
+
+map.set('car', {brand: 'mazda', model: 3}); // можем вкладывать в объект мап любые комбинации ключ значение
+map.set(777, 'три топора');
+map.set(null, 'даже так');
+map.set(NaN, 'ух ты');
+
+const obj = {
+    name: 'Макс',
+    age: 30
+};
+
+map.set(obj, 123);
+
+const func = () => {
+    console.log('hello');
+};
+
+map.set(func, 123);
+
+console.log(map);
+console.log(map.get(func)); // получаем значение ключа func
+console.log(map.has(name)); // возращает тру или фолс, проверяет есть ли такой ключ
+console.log(map.size); // количество элементов
+
+const collectMap = new Map([
+    ['hello', 'world'],
+    ['year', 1812]
+]);
+
+collectMap.delete('year'); // удаляет свойство по ключу, по значению не удаляет
+
+/* collectMap.clear(); // удаляет все элементы коллекции */
+
+console.log(collectMap);
+
+const arr = Array.from(map);
+
+console.log(arr);
+
+map.forEach((value, key) => {
+    console.log(`key ${key}, value ${value}`);
+});
+
+for(let [key, value] of map){
+    console.log(`key ${key}, value ${value}`);
+}
+
+// Коллекции Set
+
+const cars1 = new Set([
+    'honda','haval'
+]);
+
+cars1.add('Mazda'); // добавляет в коллекцию, 
+cars1.add('Volvo');
+cars1.add('BMW');
+cars1.add('BMW');  // дублируемые значения не добавляет
+cars1.add([brand, 'suzuki']);
+cars1.add({
+    name: 'Pasha',
+    age: 25
+});
+
+cars1.delete('BMW'); // удаляем элемент
+
+console.log(cars1);
+console.log(cars1.size); // длина коллекции
+
+cars.forEach((elem) =>{
+    console.log(elem);
+});
+
+console.log(...cars1);
+
+const cars2 = new Set(['honda','haval']);
+
+const newCars1 = new Set(['lada', 'kia']);
+
+const allCars = new Set([...cars2, ...newCars1]);
+
+console.log(allCars);
