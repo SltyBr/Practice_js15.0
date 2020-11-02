@@ -19,8 +19,4 @@ const myLesson = [
     {lesson: 16, type: 'additional', points: 7},
   ];
 
-const myLessonEach = (arr) =>{
-    console.log(arr);
-};
-
-myLessonEach(myLesson);
+console.log(myLesson);
