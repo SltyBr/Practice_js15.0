@@ -2,10 +2,8 @@
 const hello = document.querySelectorAll('.hello');
 // rest параметр
 // ... = rest параметр
-function test(a, b, c, ...arr){ // такая конструкция получает массив из аргументов
-    console.log(a, b, c);
-    console.log(arr);
-
+function test(...arr){ // такая конструкция получает массив из аргументов
+    return arr;
 }
 
 test('red', 5, 12, 'black', [], true, 9);
@@ -145,8 +143,6 @@ console.log(currentVehicle); */
 const ship = 'Photinia';
 
 const curTrans = {
-    ...vehicle, 
-    ...currentVehicle, 
     ship,
     ride(){
         console.log('go friends');
@@ -244,3 +240,37 @@ const newCars1 = new Set(['lada', 'kia']);
 const allCars = new Set([...cars2, ...newCars1]);
 
 console.log(allCars);
+
+console.log(`==============================================================`);
+
+const myLesson = [
+  {lesson: 1, type: 'basic', points: 2},
+  {lesson: 2, type: 'additional', points: 4},
+  {lesson: 3, type: 'basic', points: 6},
+  {lesson: 4, type: 'additional', points: 3},
+  {lesson: 5, type: 'basic', points: 4},
+  {lesson: 6, type: 'basic', points: 2},
+  {lesson: 7, type: 'additional', points: 2},
+  {lesson: 8, type: 'basic', points: 6},
+  {lesson: 9, type: 'basic', points: 4},
+  {lesson: 10, type: 'basic', points: 6},
+  {lesson: 11, type: 'additional', points: 5}, 
+  {lesson: 12, type: 'basic', points: 2}, 
+  {lesson: 13, type: 'additional', points: 2}, 
+  {lesson: 14, type: 'basic', points: 4},
+  {lesson: 15, type: 'additional', points: 1},
+  {lesson: 16, type: 'additional', points: 7},
+];
+
+
+
+
+/* const {lesson, type, points} = myLesson;
+
+const lesson1 = new Map();
+
+lesson1.set(type, points/2);
+
+console.log(lesson1); */
+
+
