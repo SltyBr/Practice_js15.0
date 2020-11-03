@@ -31,7 +31,7 @@ for (let entries of myLesson1.entries()){ // удаляем ключи, где �
 
 for (let values of myLesson1.values()){ // получаем свойства, делим  points на два
   values.points = values.points/2;
-  myLesson.push(values); //  пушим всё в новый массив
+  finalLesson.push(values); //  пушим всё в новый массив
 }
 
 console.log('Новый массив: ', finalLesson);
