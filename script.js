@@ -17,21 +17,21 @@ const myLesson = [
   {lesson: 14, type: 'basic', points: 4},
   {lesson: 15, type: 'additional', points: 1},
   {lesson: 16, type: 'additional', points: 7},
-],
-    finalLesson = [],
-    myLesson1 = new Map(Object.entries(myLesson));
+];
 
-console.log('Старый массив: ', myLesson);
+const myLessonMap = new Map(Object.entries(myLesson));
 
-for (let entries of myLesson1.entries()){ // удаляем ключи, где есть свойство со значением additional
+myLesson.splice(0, myLesson.length); // обнуляем исходный массив
+
+for (let entries of myLessonMap.entries()){ // удаляем ключи, где есть свойство со значением additional
   if (entries[1].type === 'additional'){
-    myLesson1.delete(entries[0]);
+    myLessonMap.delete(entries[0]);
   }
 }
 
-for (let values of myLesson1.values()){ // получаем свойства, делим  points на два
+for (let values of myLessonMap.values()){ // получаем свойства, делим  points на два
   values.points = values.points/2;
-  finalLesson.push(values); //  пушим всё в новый массив
+  myLesson.push(values); // наполняем исходный массив нужными значениями
 }
 
-console.log('Новый массив: ', finalLesson);
+console.log('Стало', myLesson);
