@@ -59,7 +59,7 @@ function getTimeRemaining(){
 getTimeRemaining();
 
 newYear.textContent = `До нового года осталось: ${getTimeRemaining()}`;
-curTime.textContent = now.toLocaleString('ru', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true});
+curTime.textContent = now.toLocaleString('en', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true});
 
 setInterval(function updateClock(){
   let now = new Date();
