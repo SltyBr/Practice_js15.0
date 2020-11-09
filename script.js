@@ -6,14 +6,12 @@ const hello = document.querySelector('.hello'),
       curTime = document.querySelector('.current-time'),
       newYear = document.querySelector('.new-year'),
       dayTime = ['утро', 'день', 'вечер'],
-      dayWeek = ['воскресенье', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'понедельник']; 
+      dayWeek = ['воскресенье','понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота']; 
 
 let now = new Date(),
     newYearDate = new Date(2020, 11, 31),
     day = now.getDay(),
-    hours = now.getHours(),
-    minutes = now.getMinutes(),
-    seconds = now.getSeconds();
+    hours = now.getHours();
 
 function getDayWeek(){
   dayWeek.forEach((item, i)=>{
@@ -60,7 +58,7 @@ function getTimeRemaining(){
 }
 getTimeRemaining();
 
-newYear.textContent = `До нового года осталось ${getTimeRemaining()}`;
+newYear.textContent = `До нового года осталось: ${getTimeRemaining()}`;
 curTime.textContent = now.toLocaleString('ru', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true});
 
 setInterval(function updateClock(){
