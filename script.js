@@ -4,7 +4,8 @@ const dateTime = document.querySelector('.date'),
       dateFirst = document.querySelector('.dateFirst');
 
 
-let now = new Date(),
+function dateRefresh(){
+  let now = new Date(),
     year = now.getFullYear(),
     month = now.getMonth(),
     day = now.getDay(),
@@ -13,7 +14,8 @@ let now = new Date(),
     minute = now.getMinutes(),
     second = now.getSeconds(),
     curMonth,
-    curDay;
+    curDay,
+    newDate;
 
 
 switch (month)
@@ -71,15 +73,11 @@ function zeroFirst(day){
 
 zeroFirst();
 
-dateTime.innerHTML = 'Сегодня ' + curDay + ', ' + date + ' ' + curMonth + ' ' + year + ' года, ' +  hour + ' ' + nameHour + ' ' + minute +  ' минут ' + second + ' секунд';
-
-let newDate;
-
-let counter = 1;
-function dateRefresh(){
+dateTime.innerHTML = 'Сегодня ' + curDay + ', ' + date + ' ' + curMonth + ' ' + year + ' года, ' +  hour + ' ' + nameHour + ' ' + minute    +  ' минут ' + second + ' секунд';
   newDate = date + '.' + (+month + 1) + '.' + year + ' - ' + hour + ':' + minute + ':' + second;
   dateFirst.innerHTML = newDate;
 }
+
 dateRefresh();
 
 setInterval(dateRefresh, 1000);
